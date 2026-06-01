@@ -143,7 +143,7 @@ Isolation Forest model:
 
 ### Bonus 1: EWMA detector
 
-Tôi implement thêm EWMA detector với `alpha = 0.1` và threshold `3.0`.
+Em implement thêm EWMA detector với `alpha = 0.1` và threshold `3.0`.
 
 Kết quả so sánh:
 
@@ -161,7 +161,7 @@ Nhận xét: EWMA alpha=0.1 hoạt động kém hơn IQR và Isolation Forest tr
 
 ### Bonus 2: Log transform + 3-sigma
 
-Tôi thử chạy 3-sigma trên raw value và sau đó chạy lại 3-sigma trên `log1p(value)`.
+Em thử chạy 3-sigma trên raw value và sau đó chạy lại 3-sigma trên `log1p(value)`.
 
 | Detector | Precision | Recall | F1 | False Alarms |
 |---|---:|---:|---:|---:|
@@ -187,6 +187,6 @@ Trade-off chính:
 
 Production choice:
 
-Nếu mục tiêu là không bỏ lỡ sự cố, tôi sẽ chọn IQR hoặc tune Isolation Forest với contamination cao hơn để tăng recall. Nếu mục tiêu là giảm noise cho đội on-call, tôi sẽ chọn Isolation Forest vì precision cao và ít false alarms hơn.
+Nếu mục tiêu là không bỏ lỡ sự cố, Em sẽ chọn IQR hoặc tune Isolation Forest với contamination cao hơn để tăng recall. Nếu mục tiêu là giảm noise cho đội on-call, Em sẽ chọn Isolation Forest vì precision cao và ít false alarms hơn.
 
-Với assignment này, IQR là detector tốt hơn theo F1. Trong production AIOps, tôi sẽ dùng IQR làm baseline đơn giản, dễ giải thích, sau đó dùng Isolation Forest như detector bổ sung để giảm false alarm hoặc phát hiện pattern phức tạp hơn khi có nhiều metric.
+Với assignment này, IQR là detector tốt hơn theo F1. Trong production AIOps, Em sẽ dùng IQR làm baseline đơn giản, dễ giải thích, sau đó dùng Isolation Forest như detector bổ sung để giảm false alarm hoặc phát hiện pattern phức tạp hơn khi có nhiều metric.
