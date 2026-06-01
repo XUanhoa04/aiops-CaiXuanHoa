@@ -136,8 +136,41 @@ Các file output:
 Isolation Forest model:
 
 - File: `isolation_forest_model.joblib`
-- Size: khoảng 338 KB
+- Size: khoảng 665 KB
 - Yêu cầu `< 1MB`: đạt.
+
+## Bonus
+
+### Bonus 1: EWMA detector
+
+Tôi implement thêm EWMA detector với `alpha = 0.1` và threshold `3.0`.
+
+Kết quả so sánh:
+
+| Detector | Precision | Recall | F1 | False Alarms |
+|---|---:|---:|---:|---:|
+| IQR Detector | 0.5801 | 0.5877 | 0.5839 | 965 |
+| EWMA alpha=0.1 | 0.3038 | 0.0529 | 0.0901 | 275 |
+| Isolation Forest | 0.7606 | 0.3796 | 0.5065 | 271 |
+
+Plot EWMA:
+
+![Bonus EWMA detector](bonus_ewma_detector.png)
+
+Nhận xét: EWMA alpha=0.1 hoạt động kém hơn IQR và Isolation Forest trên dataset này. Recall chỉ đạt 0.0529, nghĩa là EWMA bỏ lỡ phần lớn anomaly-window. Nguyên nhân là EWMA làm mượt chuỗi khá mạnh; detector chỉ bắt được một số điểm lệch đột ngột so với đường EWMA, nhưng không bắt tốt các đoạn temperature drop hoặc level shift kéo dài.
+
+### Bonus 2: Log transform + 3-sigma
+
+Tôi thử chạy 3-sigma trên raw value và sau đó chạy lại 3-sigma trên `log1p(value)`.
+
+| Detector | Precision | Recall | F1 | False Alarms |
+|---|---:|---:|---:|---:|
+| 3-sigma raw value | 0.9913 | 0.2019 | 0.3355 | 4 |
+| 3-sigma log transform | 0.9833 | 0.2081 | 0.3435 | 8 |
+
+Nhận xét: log transform cải thiện recall và F1 rất nhẹ so với raw 3-sigma, nhưng mức cải thiện không lớn. Cả hai phiên bản 3-sigma đều có precision rất cao và false alarms rất thấp, nhưng recall thấp, nghĩa là detector quá conservative và miss nhiều anomaly. Điều này hợp lý vì dataset bị left-skewed, trong khi log transform thường hữu ích hơn với right-skewed data.
+
+Kết luận bonus: IQR vẫn là detector tốt nhất theo F1 trên dataset này. Isolation Forest phù hợp hơn nếu muốn giảm false alarms, còn EWMA alpha=0.1 và 3-sigma không phù hợp làm detector chính cho anomaly-window kéo dài trong dữ liệu này.
 
 ## Reflection
 
