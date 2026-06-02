@@ -1,0 +1,2 @@
+raw_log,cluster_id,template_mined,change_type,templates_before,templates_after,is_new_template
+081111 112233 999 ERROR dfs.SecurityAuditor: Quantum checksum mismatch for alien_payload_id=ZX-991 source=/unknown-zone action=teleport severity=critical,22,081111 112233 999 ERROR dfs.SecurityAuditor: Quantum checksum mismatch for alien_payload_id=ZX-991 source=/unknown-zone action=teleport severity=critical,cluster_created,21,22,True

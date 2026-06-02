@@ -1,0 +1,11 @@
+timestamp,template_id,count,template
+2008-11-10 21:00:00,7,51,<*> <*> <*> INFO dfs.FSDataset: Deleting block <*> file <*>
+2008-11-10 21:00:00,11,36,<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: <*> is added to invalidSet of <*>
+2008-11-10 21:00:00,1,21,<*> <*> <*> INFO dfs.DataNode$PacketResponder: PacketResponder <*> for block <*> terminating
+2008-11-10 21:00:00,4,21,<*> <*> <*> INFO dfs.DataNode$DataXceiver: Receiving block <*> src: <*> dest: <*>
+2008-11-10 21:00:00,3,20,<*> <*> <*> INFO dfs.DataNode$PacketResponder: Received block <*> of size <*> from <*>
+2008-11-11 06:00:00,7,22,<*> <*> <*> INFO dfs.FSDataset: Deleting block <*> file <*>
+2008-11-11 06:00:00,1,17,<*> <*> <*> INFO dfs.DataNode$PacketResponder: PacketResponder <*> for block <*> terminating
+2008-11-11 06:00:00,11,17,<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.delete: <*> is added to invalidSet of <*>
+2008-11-11 06:00:00,2,15,<*> <*> <*> INFO dfs.FSNamesystem: BLOCK* NameSystem.addStoredBlock: blockMap updated: <*> is added to <*> size <*>
+2008-11-11 06:00:00,3,15,<*> <*> <*> INFO dfs.DataNode$PacketResponder: Received block <*> of size <*> from <*>
