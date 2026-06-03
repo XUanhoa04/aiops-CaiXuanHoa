@@ -223,10 +223,8 @@ def main():
     except FileNotFoundError as e:
         print(f"[FATAL ERROR] {e}", file=sys.stderr)
         sys.exit(1)
-
-    print("====================================================")
-    print("      Starting AIOps d3 Mock Streaming Pipeline     ")
-    print("====================================================")
+    
+    print("Starting AIOps d3 Mock Streaming Pipeline")
     
     # Thread-safe queue representing our Kafka Broker/Topic
     kafka_queue = queue.Queue(maxsize=5000)
@@ -248,7 +246,7 @@ def main():
     producer.join()
     consumer.join()
 
-    print("[SYSTEM] Streaming Pipeline completed successfully!")
+    print("Streaming Pipeline completed successfully!")
 
 if __name__ == "__main__":
     main()
