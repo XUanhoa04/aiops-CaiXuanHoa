@@ -1,6 +1,6 @@
 # Detection Approach — DESIGN.md
 
-## Approach tôi dùng
+## Approach em dùng
 **Phương pháp Lai giữa Ngưỡng Cố định An toàn (Safe Absolute Thresholds) và Giám sát Từ khóa Log (Log Keyword Monitoring) có Trạng thái (Stateful).**
 
 ## Tại sao chọn approach này
@@ -18,7 +18,7 @@
 4. **Kiểm soát Trạng thái (Stateful Verification)**: Để lọc nhiễu ngẫu nhiên, pipeline yêu cầu chỉ số bất thường duy trì trong ít nhất **2 ticks liên tiếp** trước khi ghi nhận alert vào `alerts.jsonl`. Sau khi ghi nhận alert cho một sự cố, các cảnh báo trùng lặp sẽ bị chặn để tránh spam file.
 5. **Cơ chế Tự động Reset**: Nếu nhận thấy timestamp đi lùi (generator khởi động lại) hoặc các chỉ số quay lại mức bình thường trong nhiều ticks liên tiếp, hệ thống sẽ reset trạng thái sẵn sàng cho đợt kiểm thử tiếp theo.
 
-## Parameters tôi chọn
+## Parameters em chọn
 - **Memory limit/threshold**: Ngưỡng `950,000,000 bytes` (~950MB). Lý do: Memory bình thường phân phối quanh mức ~800MB (std 20MB). Giá trị 950MB cách xa mean hơn 7.5 lần standard deviation (7.5-sigma), triệt tiêu hoàn toàn khả năng false alarm nhưng vẫn đảm bảo phát hiện rò rỉ bộ nhớ ở giai đoạn rất sớm (ngay khi progress rò rỉ đạt ~15%).
 - **Timeout threshold**: Ngưỡng `1.5%`. Lý do: Bình thường upstream timeout tối đa chỉ ~0.4%. Ngưỡng 1.5% giúp phân biệt hoàn hảo lỗi dependency với nhiễu mạng bình thường chỉ trong tick đầu tiên.
 - **RPS threshold**: Ngưỡng `220`. Lý do: Traffic bình thường cao nhất khoảng 160 rps + nhiễu cực đại (~200 rps). Ngưỡng 220 đảm bảo an toàn tuyệt đối.
