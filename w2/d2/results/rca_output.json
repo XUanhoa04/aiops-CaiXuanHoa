@@ -1,0 +1,35 @@
+{
+  "clusters_analyzed": 1,
+  "results": [
+    {
+      "cluster_id": "c-000-000",
+      "graph_top3": [
+        [
+          "payment-svc",
+          0.99
+        ],
+        [
+          "checkout-svc",
+          0.93
+        ],
+        [
+          "cart-svc",
+          0.79
+        ]
+      ],
+      "root_cause": "payment-svc",
+      "class": "connection_pool_exhaustion",
+      "confidence": 0.9,
+      "actions": [
+        "Rollback to v3.1. Scale pool 50 → 100 cushion. Add pool monitor alert > 80%."
+      ],
+      "reasoning": "Graph traversal picked payment-svc as most likely root cause. Retrieval matched 3 past incidents.",
+      "similar_incidents": [
+        "INC-2025-11-08",
+        "INC-2026-03-20",
+        "INC-2025-08-02"
+      ],
+      "method": "graph+retrieval"
+    }
+  ]
+}
